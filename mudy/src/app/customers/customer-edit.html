@@ -1,0 +1,12 @@
+<div class="form">
+    <div class="form-group col-sm-4" *ngFor="let sub of submersibles">
+        <label>{{sub.description}}</label>
+        <input type="text" class="form-control" placeholder="Enter Rate"
+            [(ngModel)]="sub.rate">
+    </div>
+
+    <div class="form-group col-sm-12">
+        <button (click)="updateCustomer()" class="btn btn-primary">
+            Update</button>
+    </div>
+</div>
