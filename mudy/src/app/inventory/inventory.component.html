@@ -1,0 +1,215 @@
+<div class="card">
+    <mat-tab-group (selectedTabChange)="getAllParts($event)">
+        <mat-tab label="Add Inventory/Stocks">
+            <div class="form">
+                <div class="form-group col-sm-12">
+                    <button (click)="addStocks()" class="btn btn-primary"><i class="fa fa-plus-circle"
+                            aria-hidden="true"></i>
+                        Add Stocks</button>
+                </div>
+
+                <div *ngIf="stocks.length > 0">
+                    <div class="row m-10" *ngFor="let stock of stocks; let i = index">
+                        <div class="form-group col-sm-6">
+                            <label for="inputPartType">Choose Inventory</label>
+                            <select class="form-control" [(ngModel)]="stock.id">
+                                <option selected>Open this select menu</option>
+                                <option *ngFor="let inventory of inventories" [value]="inventory._id">
+                                    {{inventory.name}}- {{inventory.type}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label for="inputInventoryQuantity">Quantity</label>
+                            <input type="number" class="form-control" id="inputInventoryQuantity" placeholder="Quantity"
+                                [(ngModel)]="stock.quantity">
+                        </div>
+
+                        <button (click)="removeStocks(i)" class="btn btn-link col-sm-1 mt-15">
+                            <i class="fa fa-close" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-12">
+                    <button (click)="purchaseStocks()" class="btn btn-primary"><i class="fa fa-plus-circle"
+                            aria-hidden="true"></i>
+                        Purchase</button>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Add Finish Goods in Stocks">
+            <div class="form">
+                <div class="form-group col-sm-12">
+                    <button (click)="addItems()" class="btn btn-primary"><i class="fa fa-plus-circle"
+                            aria-hidden="true"></i>
+                        Add Items</button>
+                </div>
+
+                <div *ngIf="items.length > 0">
+                    <div class="row m-10" *ngFor="let item of items; let i = index">
+                        <div class="form-group col-sm-6">
+                            <label for="inputItemType">Choose Items</label>
+                            <select class="form-control" [(ngModel)]="item.id">
+                                <option selected>Open this select menu</option>
+                                <option *ngFor="let sub of submersibles" [value]="sub._id">
+                                    {{sub.name}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label for="inputItemQuantity">Quantity</label>
+                            <input type="number" class="form-control" id="inputItemQuantity" placeholder="Quantity"
+                                [(ngModel)]="item.quantity">
+                        </div>
+
+                        <button (click)="removeItems(i)" class="btn btn-link col-sm-1 mt-15">
+                            <i class="fa fa-close" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-12">
+                    <button (click)="addFinishGoods()" class="btn btn-primary"><i class="fa fa-plus-circle"
+                            aria-hidden="true"></i>
+                        Add</button>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Add Child Parts">
+            <div class="form">
+                <div class="form-group col-sm-6">
+                    <label for="inputPartType">Stock Type</label>
+                    <select class="form-control" [(ngModel)]="part.type" id="inputPartType" placeholder="Enter Type">
+                        <option selected>Open this select menu</option>
+                        <option value="motor">Motor </option>
+                        <option value="pump">Pump </option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="inputMoc">MOC</label>
+                    <input type="number" class="form-control" id="inputMoc" placeholder="MOC" [(ngModel)]="part.moc">
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="inputPartName">Part Name</label>
+                    <input type="text" class="form-control" id="inputPartName" placeholder="Enter Name"
+                        [(ngModel)]="part.name">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="inputPartNo">Part Number</label>
+                    <input type="text" class="form-control" id="inputPartNo" placeholder="Enter Part no."
+                        [(ngModel)]="part.number">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="inputMaterial">Material</label>
+                    <input type="text" class="form-control" id="inputMaterial" placeholder="Enter Material"
+                        [(ngModel)]="part.material">
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="inputDescription">Description</label>
+                    <textarea class="form-control" id="inputDescription" placeholder="Enter Description"
+                        [(ngModel)]="part.description"></textarea>
+                </div>
+
+                <div class="form-group col-sm-12">
+                    <button (click)="createPart()" class="btn btn-primary"><i class="fa fa-plus-circle"
+                            aria-hidden="true"></i>
+                        Create</button>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="View Inventory">
+            <div class="card-container">
+                <button class="btn btn-primary export-btn" (click)="exportToExcel()">Export To Excel</button>
+                <table class="table" id="inventory-table">
+                    <thead>
+                        <tr>
+                            <th>S.no</th>
+                            <th>Part Name</th>
+                            <th>Part Number</th>
+                            <th>Type</th>
+                            <th>Material</th>
+                            <th>Description</th>
+                            <th>MOC</th>
+                            <th class="bg-blue">C/L 100</th>
+                            <th class="bg-pink">C/L 150</th>
+                            <th class="bg-purple">C/L 180</th>
+                            <th class="bg-yellow">C/L 225</th>
+                            <th class="bg-green">C/L 240</th>
+                            <th>Remaining</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of inventories; let i = index;">
+                            <td>{{i + 1}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.number}}</td>
+                            <td>{{item.type}}</td>
+                            <td>{{item.material}}</td>
+                            <td>{{item.description}}</td>
+                            <td>{{item.moc}}</td>
+
+                            <td class="bg-blue">
+                                <span
+                                    *ngIf="item.allowedSubType.indexOf(submersibles[0]._id) !== -1 || item.allowedSubType.indexOf(submersibles[1]._id) !== -1">{{(submersibles[0].quantity
+                                    || submersibles[1].quantity )?
+                                    (submersibles[0].quantity + submersibles[1].quantity):0}}</span>
+                            </td>
+                            <td class="bg-pink">
+                                <span
+                                    *ngIf="item.allowedSubType.indexOf(submersibles[2]._id) !== -1">{{submersibles[2].quantity?
+                                    submersibles[2].quantity: 0}}</span>
+                            </td>
+                            <td class="bg-purple">
+                                <span
+                                    *ngIf="item.allowedSubType.indexOf(submersibles[3]._id) !== -1 || item.allowedSubType.indexOf(submersibles[4]._id) !== -1">{{(submersibles[3].quantity
+                                    || submersibles[4].quantity )?
+                                    (submersibles[3].quantity + submersibles[4].quantity):0}}</span>
+                            </td>
+                            <td class="bg-yellow">
+                                <span *ngIf="item.allowedSubType.indexOf(submersibles[5]._id) !== -1">
+                                    {{submersibles[5].quantity? submersibles[5].quantity: 0}}</span>
+                            </td>
+                            <td class="bg-green"><span
+                                    *ngIf="item.allowedSubType.indexOf(submersibles[6]._id) !== -1">{{submersibles[6].quantity?
+                                    submersibles[6].quantity: 0}}</span></td>
+
+                            <td>{{item.quantity}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </mat-tab>
+        <mat-tab label="View Finish Goods in Stocks">
+            <div class="card-container">
+                <table class="table" id="finish-goods-table">
+                    <thead>
+                        <tr>
+                            <th>S.no</th>
+                            <th>Submersibles</th>
+                            <th>Quantity</th>
+                            <th>Description</th>
+                            <th>HsnSac</th>
+              
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of submersibles; let i = index;">
+                            <td>{{i + 1}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.quantity}}</td>
+                            <td>{{item.description}}</td>
+                            <td>{{item.hsnSac}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>
