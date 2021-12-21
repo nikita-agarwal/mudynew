@@ -1,0 +1,15 @@
+<div >
+    <div class="flex">
+        <label>Customer Name:</label>
+        <div>{{customer.name}}</div>
+    </div>
+    <div class="flex">
+        <label>Ammount:</label>
+        <div>{{data.pay.ammount}}</div>
+    </div>
+    <div class="flex">
+        <label>Mode:</label>
+        <div>{{data.pay.mode}}</div>
+    </div>
+    <button class="btn btn-primary" (click)="updatePaymentStatus()">Update cheque as cleared</button>
+</div>
