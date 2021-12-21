@@ -1,0 +1,114 @@
+<div class="card">
+    <mat-tab-group (selectedTabChange)="getAllCustomers($event)">
+        <mat-tab label="Add Customer">
+            <div class="form">
+                <div class="form-group col-sm-3">
+                    <label for="inputCustomerName">Customer Name</label>
+                    <input type="text" class="form-control" id="inputCustomerName" placeholder="Enter Name"
+                        [(ngModel)]="customer.name">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="inputMobileNumber">Mobile Number</label>
+                    <input type="text" class="form-control" id="inputMobileNumber" placeholder="Enter Mobile Number"
+                        [(ngModel)]="customer.mobileNumber">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="inputPanNo">PAN No</label>
+                    <input type="text" class="form-control" id="inputPanNo" placeholder="Enter PAN no."
+                        [(ngModel)]="customer.pan">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="inputGstNo">GST No</label>
+                    <input type="text" class="form-control" id="inputGstNo" placeholder="Enter GST no."
+                        [(ngModel)]="customer.gst">
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="inputCustomerAddress">Customer Address</label>
+                    <textarea class="form-control" id="inputCustomerAddress" placeholder="Enter Customer Address"
+                        [(ngModel)]="customer.address"></textarea>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="inputShippingAddress">Shipping Address</label>
+                    <textarea class="form-control" id="inputShippingAddress" placeholder="Enter Customer Address"
+                        [(ngModel)]="customer.shippingAddress"></textarea>
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="inputState">State</label>
+                    <select class="form-control" [(ngModel)]="customer.state" (change)="setStateCode($event.target.value)" placeholder="Choose State">
+                        <option selected>Open this select menu</option>
+                        <option *ngFor="let st of states" [value]="st.state">
+                            {{st.state}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <label for="inputStateCode">Code</label>
+                    <input type="text" class="form-control" id="inputStateCode" placeholder="Enter State Code"
+                        [(ngModel)]="customer.stateCode" disabled>
+                </div>
+
+                <div class="form-group col-sm-3">
+                    <label for="inputBrand">Brand</label>
+                    <input type="text" class="form-control" id="inputBrand" placeholder="Enter Brand"
+                        [(ngModel)]="customer.brand">
+                </div>
+
+                <div class="form-group col-sm-3">
+                    
+                </div>
+
+                <div class="form-group col-sm-4" *ngFor="let sub of submersibles">
+                    <label>{{sub.description}}</label>
+                    <input type="text" class="form-control" placeholder="Enter Rate"
+                        [(ngModel)]="sub.rate">
+                </div>
+
+                <div class="form-group col-sm-12">
+                    <button (click)="addCustomer()" class="btn btn-primary"><i class="fa fa-plus-circle"
+                            aria-hidden="true"></i>
+                        Add</button>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="View Customers">
+            <div class="card-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Pan</th>
+                            <th>Gst</th>
+                            <th>Address</th>
+                            <th>State</th>
+                            <th>Brand</th>
+                            <th>Rates</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let customer of customers">
+                            <td>{{customer.name}}</td>
+                            <td>{{customer.mobileNumber}}</td>
+                            <td>{{customer.pan}}</td>
+                            <td>{{customer.gst}}</td>
+                            <td>{{customer.address}}</td>
+                            <td>{{customer.state}}- {{customer.stateCode}}</td>
+                            <td>{{customer.brand}}</td>
+                            <td><div *ngFor="let rate of customer.subRates[customer.subRates.length-1]">{{rate.name}}-{{rate.rate}}</div></td>
+                            <td>
+                                <button (click)="editCustomer(customer)" class="btn btn-transparent"><i class="fa fa-edit"
+                                    aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
+</div>
