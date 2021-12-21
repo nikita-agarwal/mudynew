@@ -1,0 +1,174 @@
+<div class="invoice-wrapper" id="demo">
+  <button class="btn btn-primary print-btn" ngxPrint [useExistingCss]="true" printSectionId="demo">Print</button>
+  <h4 class="text-center">Tax Invoice</h4>
+  <div class="flex-row">
+    <div class="flex-left-column">
+      <div class="fs-14"><b>GST NO:</b> 08AOKPT4668R1ZO</div>
+      <div class="fs-14"><b>PAN NO:</b> AOKPT4668R</div>
+    </div>
+    <small class="flex-center-column">
+      ( For supply from factory/warehouse on payment of GST under Rule-7, Section-31 )
+    </small>
+    <small class="flex-right-column text-underline">
+      Original for Recipient
+    </small>
+  </div>
+  <hr>
+  <div class="flex-row mb-20">
+    <div class="flex-left-column">
+      <img src="assets/logo.png" alt="logo" class="h-8vh" />
+    </div>
+
+    <h2 class="flex-right-column w-70">
+      Mudy Manufacturing Industries
+    </h2>
+  </div>
+  <div class="flex-row">
+    <div class="col-sm-9">
+      Manufacturer of: All kind of Submersible pump, Indusction motor and control panel
+      H1-488, RIICO Industrial area, Khushkhera, Alwar, Rajasthan, 301707
+    </div>
+    <div class="col-sm-3">
+      <div><b>State :</b> Rajasthan</div>
+      <div><b>Code :</b> 08</div>
+    </div>
+  </div>
+  <hr>
+  <div class="flex-row mb-20">
+    <div class="col-sm-6">
+      <b>Customer Name:</b>
+      <div>{{customer.name}}</div>
+    </div>
+    <div class="col-sm-3">
+      <div><b>Invoice No :</b> </div>
+      <div><b>Challan No :</b> </div>
+    </div>
+    <div class="col-sm-3">
+      <div><b>Date :</b> {{invoice.date | date: 'dd-MMM-yyyy'}}</div>
+    </div>
+  </div>
+  <div class="flex-row align-up mb-20">
+    <div class="col-sm-6">
+      <div><b>Customer Address :</b> {{customer.address}}</div>
+      <br />
+      <div><b>GST :</b> {{customer.gst}}</div>
+      <div><b>PAN :</b> {{customer.pan}}</div>
+      <div><b>State :</b> {{customer.state}}</div>
+    </div>
+    <div class="col-sm-6">
+      <div><b>Shipping Address :</b> {{customer.shippingAddress}}</div>
+    </div>
+  </div>
+  <div class="flex-row">
+    <table class="table">
+      <thead>
+        <th>S.No</th>
+        <th>Description Of Goods</th>
+        <th>HSN / SAC</th>
+        <th>Qty</th>
+        <th>Unit Price</th>
+        <th *ngIf="customer.state === 'Rajasthan'">GST @ 12%</th>
+        <th *ngIf="customer.state !== 'Rajasthan'">CGST @ 6%</th>
+        <th *ngIf="customer.state !== 'Rajasthan'">SGST @ 6%</th>
+        <th>Total Amount</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let good of invoice.goods; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{good.description}}-4{{customer.brand}}{{good.code}}S4</td>
+          <td>{{good.hsnSac}}</td>
+          <td>{{good.qty}}</td>
+          <td>{{good.price}}</td>
+          <td *ngIf="customer.state === 'Rajasthan'">{{(good.price*12)/100}}</td>
+          <td *ngIf="customer.state !== 'Rajasthan'">{{(good.price*6)/100}}</td>
+          <td *ngIf="customer.state !== 'Rajasthan'">{{(good.price*6)/100}}</td>
+          <td>{{good.qty * good.price}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+  <div class="text-right">
+    <b>Total Amount:</b> {{totalAmt}}
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="row">
+        <b>Declaration:</b>
+        <span>Certified that Perticulars given above are true and correct under GST Act 2017 and amount indicated
+          represent the price actualy charged and that there is no flow of additional consideration directly or
+          indirectly from buyer .
+        </span>
+      </div>
+      <div class="row">
+        <b>Terms & Conditions :</b>
+        <ol type="1">
+          <li>Interest @ 12 % P.A will be charged extra on all the bills outstnading if payment made after due date.</li>
+          <li>Goods once sold will not be accepted back.</li>
+          <li>Our Responsibility ceases as the goods leave our premises</li>		                 
+        </ol>
+      </div>
+      <div class="row">
+        <b>Cheque or RTGS / NEFT should be in Favour of :</b>
+        <ol type="1">
+          <li>MUDY MANUFACTURING INDUSTRIES.</li>
+          <li>BANK A/C NO : " 349405000431 "</li>
+          <li>BANK NAME : ' ICICI BANK"</li>		 
+          <li>IFSC CODE : " ICIC0003494 "</li>     
+          <li>BRANCH : " BHIWADI ALWAR BYPASS"</li>           
+        </ol>
+      </div>
+
+    </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4">
+      <div class="row mb-20 space-between">
+        <b>Taxable Amount roundoff :</b>
+        <span> {{totalAmt}}
+        </span>
+      </div>
+      <div class="row mb-20 space-between">
+        <b>CGST@ 6% :</b>
+        <span *ngIf="customer.state === 'Rajasthan'">
+          {{(totalAmt*6)/100}}
+        </span>
+      </div>
+      <div class="row mb-20 space-between">
+        <b>SGST@ 6% :</b>
+        <span *ngIf="customer.state === 'Rajasthan'"> 
+          {{(totalAmt*6)/100}}
+        </span>
+      </div>
+      <div class="row mb-20 space-between">
+        <b>IGST@ 12% :</b>
+        <span *ngIf="customer.state !== 'Rajasthan'"> 
+          {{(totalAmt*12)/100}}
+        </span>
+      </div>
+      <div class="row mb-20 space-between">
+        <b>Grand Total :</b>
+        <span *ngIf="customer.state !== 'Rajasthan'"> 
+          {{totalAmt + ((totalAmt*12)/100)}}
+        </span>
+        <span *ngIf="customer.state === 'Rajasthan'"> 
+          {{totalAmt + ((totalAmt*6)/100) + ((totalAmt*6)/100)}}
+        </span>
+      </div>
+      <div class="row mb-20 space-between">
+        <b>Grand Total Roundoff :</b>
+        <span *ngIf="customer.state !== 'Rajasthan'"> 
+          {{totalAmt + ((totalAmt*12)/100)}}
+        </span>
+        <span *ngIf="customer.state === 'Rajasthan'"> 
+          {{totalAmt + ((totalAmt*6)/100) + ((totalAmt*6)/100) |  number:'1.0-0'}}
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="flex-row">
+    All Disputes Subjected to Bhiwadi Rajasthan Jurisdition only.
+  </div>
+</div>
+

@@ -1,0 +1,29 @@
+<table class="table" id="sales-table">
+    <thead>
+        <tr>
+            <th>Total Due</th>
+            <th>Total Recieved</th>
+            <th>Balance</th>
+            <th>Sales</th>
+            <th>Payment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{data.totalBalance}}</td>
+            <td>{{data.totalRecieved}}</td>
+            <td>{{data.totalBalance - data.totalRecieved}}</td>
+            <td class="bg-pink">
+                <div *ngFor="let bill of data.bills">
+                    {{bill.date | date: 'dd-MMM-yyyy'}} {{bill.ammount}}
+                </div>
+            </td>
+            <td class="bg-green">
+                <div *ngFor="let pay of data.payments"
+                    [ngClass]="{'highlight': pay.mode === 'cheque'}" (click)="openPaymnetModal(pay)">
+                    {{pay.date | date: 'dd-MMM-yyyy'}} {{pay.ammount}}
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
