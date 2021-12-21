@@ -1,0 +1,133 @@
+<div class="card">
+    <mat-tab-group (selectedTabChange)="getAllInvoices($event)">
+        <mat-tab label="Create Invoice">
+            <a href="/customers" class="link">+ Add New Customer</a>
+            <div class="form">
+                <div class="form-group col-sm-9">
+                    <label for="inputCustomerName">Choose Existing Customer</label>
+                    <select class="form-control" (change)="fillDetails(customer._id)" [(ngModel)]="customer._id">
+                        <option selected>Open this select menu</option>
+                        <option *ngFor="let customer of customers" [value]="customer._id">
+                            {{customer.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="inputDate">Date</label>
+                    <input type="date" class="form-control" id="inputDate" placeholder="Enter Date"
+                        [(ngModel)]="date">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="inputCustomerName">Customer Name</label>
+                    <input type="text" class="form-control" id="inputCustomerName" placeholder="Enter Name"
+                        [(ngModel)]="customer.name" disabled>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="inputPanNo">PAN No</label>
+                    <input type="text" class="form-control" id="inputPanNo" placeholder="Enter PAN no."
+                        [(ngModel)]="customer.pan" disabled>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="inputGstNo">GST No</label>
+                    <input type="text" class="form-control" id="inputGstNo" placeholder="Enter GST no."
+                        [(ngModel)]="customer.gst" disabled>
+                </div>
+        
+                <div class="form-group col-sm-6">
+                    <label for="inputCustomerAddress">Customer Address</label>
+                    <textarea class="form-control" id="inputCustomerAddress" placeholder="Enter Customer Address"
+                        [(ngModel)]="customer.address" disabled></textarea>
+                </div>
+        
+                <div class="form-group col-sm-6">
+                    <label for="inputShippingAddress">Shipping Address</label>
+                    <textarea class="form-control" id="inputShippingAddress" placeholder="Enter Customer Address"
+                        [(ngModel)]="customer.shippingAddress"></textarea>
+                </div>
+        
+                <div class="form-group col-sm-6">
+                    <label for="inputState">State</label>
+                    <input type="text" class="form-control" id="inputState" placeholder="Enter State"
+                        [(ngModel)]="customer.state" disabled>
+                </div>
+        
+                <div class="form-group col-sm-12">
+                    <button (click)="addGoods()" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        Add Goods</button>
+                </div>
+        
+                <div *ngIf="goods.length > 0">
+                    <div class="row m-10" *ngFor="let good of goods; let i = index">
+                        <div class="form-group col-sm-3">
+                            <label>Description</label>
+                            <select class="form-control" [(ngModel)]="good.description" (change)="fillGoodsDetails(good.description, good)">
+                                <option selected>Open this select menu</option>
+                                <option *ngFor="let sub of submersibles" [value]="sub._id">
+                                    {{sub.description}}
+                                </option>
+                            </select>
+                        </div>
+        
+                        <div class="form-group col-sm-2">
+                            <label>HSN/SAC</label>
+                            <input type="text" class="form-control" placeholder="HSN/SAC" [(ngModel)]="good.hsnSac" disabled>
+                        </div>
+                        
+                        <div class="form-group col-sm-2">
+                            <label>Serial Number</label>
+                            <input type="text" class="form-control" placeholder="Serial Number" [(ngModel)]="good.serialNumber">
+                        </div>
+
+                        <div class="form-group col-sm-2">
+                            <label>Qty</label>
+                            <input type="number" class="form-control" placeholder="Qty" [(ngModel)]="good.qty">
+                        </div>
+        
+                        <div class="form-group col-sm-2">
+                            <label>Unit Price</label>
+                            <input type="text" class="form-control" placeholder="Unit Price" [(ngModel)]="good.price" disabled>
+                        </div>
+        
+                        <button (click)="removeGoods(i)" class="btn btn-link col-sm-1 mb-15">
+                            <i class="fa fa-close" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+        
+                <div class="form-group col-sm-12">
+                    <button (click)="createInvoice()" class="btn btn-primary"><i class="fa fa-plus-circle"
+                            aria-hidden="true"></i>
+                        Create</button>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="View Invoice">
+            <div class="card-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let invoice of invoices">
+                            <td>{{invoice.name}}</td>
+                            <td>{{invoice.date}}</td>
+                            <td>
+                                <button class="btn btn-transparent p-0" (click)="viewInvoice(invoice._id)">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                                <!-- <button class="btn btn-transparent danger p-0" (click)="deleteInvoice(invoice._id)">
+                                    <i class="fa fa-trash"></i>
+                                </button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </mat-tab>
+    </mat-tab-group>
+</div>
