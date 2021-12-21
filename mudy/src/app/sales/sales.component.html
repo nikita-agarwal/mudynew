@@ -1,0 +1,158 @@
+<div class="card">
+    <mat-tab-group (selectedTabChange)="getAllPayments($event)">
+        <mat-tab label="Add Payment">
+            <div class="form">
+                <div class="form-group col-sm-3">
+                    <label for="inputCustomerName">Choose Customer</label>
+                    <select class="form-control" [(ngModel)]="payment.customerId">
+                        <option selected>Open this select menu</option>
+                        <option *ngFor="let customer of customers" [value]="customer._id">
+                            {{customer.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="inputAmmount">Ammount</label>
+                    <input type="number" class="form-control" id="inputAmmount" placeholder="Enter Ammount"
+                        [(ngModel)]="payment.ammount">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="inputDate">Date</label>
+                    <input type="date" class="form-control" id="inputDate" placeholder="Enter Date"
+                        [(ngModel)]="payment.date">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="inputMode">Mode</label>
+                    <select class="form-control" [(ngModel)]="payment.mode">
+                        <option selected>Open this select menu</option>
+                        <option value="cheque">
+                            Cheque
+                        </option>
+                        <option value="neft">
+                            NEFT/RTGS
+                        </option>
+                        <option value="upi">
+                            UPI
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm-12">
+                    <button (click)="addPayment()" class="btn btn-primary"><i class="fa fa-plus-circle"
+                            aria-hidden="true"></i>
+                        Add Payment</button>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="View Sales Report">
+            <div class="card-container w-150">
+                <button class="btn btn-primary export-btn" (click)="exportToExcel()">Export To Excel</button>
+                <!-- <div class="form-group col-sm-2 filter">
+                    <select class="form-control" [(ngModel)]="month" (change)="filterTableData()">
+                        <option selected>Open this select menu</option>
+                        <option *ngFor="let month of months" [value]="month">
+                            {{month}}
+                        </option>
+                    </select>
+                </div> -->
+                <hr />
+                <table class="table" id="sales-table">
+                    <thead>
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Location</th>
+                            <th>Total Due</th>
+                            <th>Total Recieved</th>
+                            <th>Balance</th>
+                            <th>Sales</th>
+                            <th>Payment</th>
+                            <div class="head" *ngFor="let rate of numbers">
+                                <th>1.0/8 | Rate</th>
+                                <th>1.0/10 | Rate</th>
+                                <th>1.0/15 | Rate</th>
+                                <th>1.5/12 | Rate</th>
+                                <th>2.0/12 | Rate</th>
+                                <th>2.0/15 | Rate</th>
+                                <th>2.0/18 | Rate</th>
+                            </div>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let customer of customers">
+                            <td>{{customer.name}}</td>
+                            <td>{{customer.state}}</td>
+                            <td>{{customer.totalBalance}}</td>
+                            <td>{{customer.totalRecieved}}</td>
+                            <td>{{customer.totalBalance - customer.totalRecieved}}</td>
+                            <td class="bg-pink">
+                                <div *ngFor="let bill of customer.bills">
+                                    {{bill.date | date: 'dd-MMM-yyyy'}} {{bill.ammount}}
+                                </div>
+                            </td>
+                            <td class="bg-green">
+                                <div *ngFor="let pay of customer.payments"
+                                    [ngClass]="{'highlight': pay.mode === 'cheque'}" (click)="openPaymnetModal(pay)">
+                                    {{pay.date | date: 'dd-MMM-yyyy'}} {{pay.ammount}}
+                                </div>
+                            </td>
+
+                            <div class="head" *ngFor="let rate of numbers.slice().reverse()">
+                                <td *ngIf="customer.subRates[rate] && customer.subRates[rate].length > 0">
+                                    <b>{{customer.subRates[rate][0].items? customer.subRates[rate][0].items: 0}}</b>-
+                                    {{customer.subRates[rate][0].rate}}
+                                </td>
+                                <td *ngIf="customer.subRates[rate] && customer.subRates[rate].length > 0">
+                                    <b>{{customer.subRates[rate][1].items? customer.subRates[rate][1].items: 0}}</b>-
+                                    {{customer.subRates[rate][1].rate}}
+                                </td>
+    
+                                <td *ngIf="customer.subRates[rate] && customer.subRates[rate].length > 0">
+                                    <b>{{customer.subRates[rate][2].items? customer.subRates[rate][2].items: 0}}</b>-
+                                    {{customer.subRates[rate][2].rate}}
+                                </td>
+    
+                                <td *ngIf="customer.subRates[rate] && customer.subRates[rate].length > 0">
+                                    <b>{{customer.subRates[rate][3].items? customer.subRates[rate][3].items: 0}}</b>-
+                                    {{customer.subRates[rate][3].rate}}
+                                </td>
+    
+                                <td *ngIf="customer.subRates[rate] && customer.subRates[rate].length > 0">
+                                    <b>{{customer.subRates[rate][4].items? customer.subRates[rate][4].items: 0}}</b>-
+                                    {{customer.subRates[rate][4].rate}}
+                                </td>
+    
+                                <td *ngIf="customer.subRates[rate] && customer.subRates[rate].length > 0">
+                                    <b>{{customer.subRates[rate][5].items? customer.subRates[rate][5].items: 0}}</b>-
+                                    {{customer.subRates[rate][5].rate}}
+                                </td>
+    
+                                <td *ngIf="customer.subRates[rate] && customer.subRates[rate].length > 0">
+                                    <b>{{customer.subRates[rate][6].items? customer.subRates[rate][6].items: 0}}</b>-
+                                    {{customer.subRates[rate][6].rate}}
+                                </td>
+                            </div>
+                            
+
+                        </tr>
+                        <!-- <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Balance</td>
+                            <td>Sales</td>
+                            <td>Payment</td>
+                            <td>1.0/8 | Rate</td>
+                            <td>1.0/10 | Rate</td>
+                            <td>1.0/15 | Rate</td>
+                            <td>1.5/12 | Rate</td>
+                            <td>2.0/12 | Rate</td>
+                            <td>2.0/15 | Rate</td>
+                            <td>2.0/18 | Rate</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>
