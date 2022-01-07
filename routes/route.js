@@ -9,6 +9,10 @@ const MaxRateChange = require('../models/maxRateChange');
 const router = express.Router();
 
 // Retrievig Data
+router.get('/test', (req, res, next) => {
+    res.send('Hello World');
+});
+
 router.get('/customers', (req, res, next) => {
     Customer.find(function (err, customers) {
         res.send(customers);
