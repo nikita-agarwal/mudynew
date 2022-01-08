@@ -39,9 +39,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', route);
 
 // testing server
-app.get('/', (req, res)=> {
-    res.send('foobar');
-})
+app.get('/', (req, res) => {
+    res.sendFile('index.html',{root:__dirname})
+});
 
 app.listen(port, ()=> {
     console.log("Server started at port:", port);
