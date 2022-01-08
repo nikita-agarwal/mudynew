@@ -1201,6 +1201,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! rxjs/add/operator/map */
     "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
+    /* harmony import */
+
+
+    var src_environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! src/environments/environment */
+    "./src/environments/environment.ts");
 
     var CustomerService = /*#__PURE__*/function () {
       function CustomerService(http) {
@@ -1213,14 +1219,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CustomerService, [{
         key: "getCustomers",
         value: function getCustomers() {
-          return this.http.get('http://localhost:3000/api/customers').map(function (res) {
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/customers').map(function (res) {
             return res;
           });
         }
       }, {
         key: "getAllStates",
         value: function getAllStates() {
-          return this.http.get('http://localhost:3000/api/states').map(function (res) {
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/states').map(function (res) {
             return res;
           });
         }
@@ -1230,7 +1236,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
           headers1.append('Content-Type', 'application/javascript');
           headers1.append('Access-Control-Allow-Origin', '*');
-          return this.http.post('http://localhost:3000/api/customer', newCustomer, {
+          return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/customer', newCustomer, {
             headers: headers1
           }).map(function (res) {
             return res;
@@ -1242,7 +1248,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
           headers1.append('Content-Type', 'application/javascript');
           headers1.append('Access-Control-Allow-Origin', '*');
-          return this.http.put('http://localhost:3000/api/updateCustomer/' + id, {
+          return this.http.put(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/updateCustomer/' + id, {
             subRates: sub
           }, {
             headers: headers1
@@ -1256,7 +1262,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
           headers1.append('Content-Type', 'application/javascript');
           headers1.append('Access-Control-Allow-Origin', '*');
-          return this.http.put('http://localhost:3000/api/updateMaxRateChanges/' + id, {
+          return this.http.put(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/updateMaxRateChanges/' + id, {
             number: num
           }, {
             headers: headers1
@@ -1267,28 +1273,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "deleteCustomer",
         value: function deleteCustomer(id) {
-          return this.http["delete"]('http://localhost:3000/api/customer/' + id).map(function (res) {
+          return this.http["delete"](src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/customer/' + id).map(function (res) {
             return res;
           });
         }
       }, {
         key: "getCustomerById",
         value: function getCustomerById(id) {
-          return this.http.get('http://localhost:3000/api/customer/' + id).map(function (res) {
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/customer/' + id).map(function (res) {
             return res;
           });
         }
       }, {
         key: "getInvoices",
         value: function getInvoices() {
-          return this.http.get('http://localhost:3000/api/invoices').map(function (res) {
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/invoices').map(function (res) {
             return res;
           });
         }
       }, {
         key: "getInvoiceById",
         value: function getInvoiceById(id) {
-          return this.http.get('http://localhost:3000/api/invoice/' + id).map(function (res) {
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/invoice/' + id).map(function (res) {
             return res;
           });
         }
@@ -1299,7 +1305,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           headers1.append('Content-Type', 'application/javascript');
           headers1.append('Access-Control-Allow-Origin', '*');
           var filename = name + '-' + invoiceDate;
-          return this.http.post('http://localhost:3000/api/invoice', {
+          return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/invoice', {
             name: filename,
             id: customerId,
             goods: items,
@@ -1313,7 +1319,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "deleteInvoice",
         value: function deleteInvoice(id) {
-          return this.http["delete"]('http://localhost:3000/api/invoice/' + id).map(function (res) {
+          return this.http["delete"](src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/invoice/' + id).map(function (res) {
             return res;
           });
         }
@@ -1800,6 +1806,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! rxjs/add/operator/map */
     "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
+    /* harmony import */
+
+
+    var src_environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! src/environments/environment */
+    "./src/environments/environment.ts");
 
     var InventoryService = /*#__PURE__*/function () {
       function InventoryService(http) {
@@ -1814,7 +1826,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
           headers1.append('Content-Type', 'application/javascript');
           headers1.append('Access-Control-Allow-Origin', '*');
-          return this.http.post('http://localhost:3000/api/part', inventory, {
+          return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/part', inventory, {
             headers: headers1
           }).map(function (res) {
             return res;
@@ -1823,28 +1835,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getAllParts",
         value: function getAllParts() {
-          return this.http.get('http://localhost:3000/api/parts').map(function (res) {
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/parts').map(function (res) {
             return res;
           });
         }
       }, {
         key: "getAllSubmersibles",
         value: function getAllSubmersibles() {
-          return this.http.get('http://localhost:3000/api/submersibles').map(function (res) {
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/submersibles').map(function (res) {
             return res;
           });
         }
       }, {
         key: "getMaxRateChange",
         value: function getMaxRateChange() {
-          return this.http.get('http://localhost:3000/api/maxRateChange').map(function (res) {
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/maxRateChange').map(function (res) {
             return res;
           });
         }
       }, {
         key: "getSubmersibleById",
         value: function getSubmersibleById(id) {
-          return this.http.get('http://localhost:3000/api/submersible/' + id).map(function (res) {
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/submersible/' + id).map(function (res) {
             return res;
           });
         }
@@ -1854,7 +1866,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
           headers1.append('Content-Type', 'application/javascript');
           headers1.append('Access-Control-Allow-Origin', '*');
-          return this.http.put('http://localhost:3000/api/updateSubmersible/' + id, {
+          return this.http.put(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/updateSubmersible/' + id, {
             quantity: qty
           }, {
             headers: headers1
@@ -1865,7 +1877,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getPartById",
         value: function getPartById(id) {
-          return this.http.get('http://localhost:3000/api/stock/' + id).map(function (res) {
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/stock/' + id).map(function (res) {
             return res;
           });
         }
@@ -1875,7 +1887,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
           headers1.append('Content-Type', 'application/javascript');
           headers1.append('Access-Control-Allow-Origin', '*');
-          return this.http.put('http://localhost:3000/api/updateStock/' + id, {
+          return this.http.put(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/updateStock/' + id, {
             quantity: qty
           }, {
             headers: headers1
@@ -1889,7 +1901,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
           headers1.append('Content-Type', 'application/javascript');
           headers1.append('Access-Control-Allow-Origin', '*');
-          return this.http.put('http://localhost:3000/api/updateFinishGoods/' + id, {
+          return this.http.put(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/updateFinishGoods/' + id, {
             quantity: qty
           }, {
             headers: headers1
@@ -1903,7 +1915,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
           headers1.append('Content-Type', 'application/javascript');
           headers1.append('Access-Control-Allow-Origin', '*');
-          return this.http.post('http://localhost:3000/api/payment/', payment, {
+          return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/payment/', payment, {
             headers: headers1
           }).map(function (res) {
             return res;
@@ -1912,14 +1924,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getAllPayments",
         value: function getAllPayments() {
-          return this.http.get('http://localhost:3000/api/payments').map(function (res) {
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/payments').map(function (res) {
             return res;
           });
         }
       }, {
         key: "getPaymentsByCustomerId",
         value: function getPaymentsByCustomerId(customerId) {
-          return this.http.get('http://localhost:3000/api/paymentByCustomer/' + customerId).map(function (res) {
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/paymentByCustomer/' + customerId).map(function (res) {
             return res;
           });
         }
@@ -1929,7 +1941,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
           headers1.append('Content-Type', 'application/javascript');
           headers1.append('Access-Control-Allow-Origin', '*');
-          return this.http.put('http://localhost:3000/api/updatePayment/' + id, {
+          return this.http.put(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/updatePayment/' + id, {
             headers: headers1
           }).map(function (res) {
             return res;
@@ -1938,7 +1950,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getInvoicesByCustomerId",
         value: function getInvoicesByCustomerId(customerId) {
-          return this.http.get('http://localhost:3000/api/invoiceByCustomer/' + customerId).map(function (res) {
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/invoiceByCustomer/' + customerId).map(function (res) {
             return res;
           });
         }
@@ -3237,15 +3249,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
-  "./src/environments/environments.ts":
-  /*!******************************************!*\
-    !*** ./src/environments/environments.ts ***!
-    \******************************************/
+  "./src/environments/environment.ts":
+  /*!*****************************************!*\
+    !*** ./src/environments/environment.ts ***!
+    \*****************************************/
 
   /*! exports provided: environment */
 
   /***/
-  function srcEnvironmentsEnvironmentsTs(module, __webpack_exports__, __webpack_require__) {
+  function srcEnvironmentsEnvironmentTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
@@ -3266,7 +3278,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     var environment = {
-      production: false
+      production: false,
+      apiUrl: 'http://18.188.153.24'
     };
     /*
      * For easier debugging in development mode, you can import the following file
@@ -3330,11 +3343,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _environments_environments__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! ./environments/environments */
-    "./src/environments/environments.ts");
+    var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./environments/environment */
+    "./src/environments/environment.ts");
 
-    if (_environments_environments__WEBPACK_IMPORTED_MODULE_5__["environment"].production) {
+    if (_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].production) {
       Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["enableProdMode"])();
     }
 

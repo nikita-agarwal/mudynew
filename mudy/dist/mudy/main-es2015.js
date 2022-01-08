@@ -619,6 +619,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+
 
 
 
@@ -629,48 +631,48 @@ let CustomerService = class CustomerService {
         this.customer = {};
     }
     getCustomers() {
-        return this.http.get('http://localhost:3000/api/customers')
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/customers')
             .map(res => res);
     }
     getAllStates() {
-        return this.http.get('http://localhost:3000/api/states')
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/states')
             .map(res => res);
     }
     addCustomer(newCustomer) {
         const headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers1.append('Content-Type', 'application/javascript');
         headers1.append('Access-Control-Allow-Origin', '*');
-        return this.http.post('http://localhost:3000/api/customer', newCustomer, { headers: headers1 })
+        return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/customer', newCustomer, { headers: headers1 })
             .map(res => res);
     }
     updateCustomer(id, sub) {
         const headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers1.append('Content-Type', 'application/javascript');
         headers1.append('Access-Control-Allow-Origin', '*');
-        return this.http.put('http://localhost:3000/api/updateCustomer/' + id, { subRates: sub }, { headers: headers1 })
+        return this.http.put(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/updateCustomer/' + id, { subRates: sub }, { headers: headers1 })
             .map(res => res);
     }
     updateMaxRateChanges(id, num) {
         const headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers1.append('Content-Type', 'application/javascript');
         headers1.append('Access-Control-Allow-Origin', '*');
-        return this.http.put('http://localhost:3000/api/updateMaxRateChanges/' + id, { number: num }, { headers: headers1 })
+        return this.http.put(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/updateMaxRateChanges/' + id, { number: num }, { headers: headers1 })
             .map(res => res);
     }
     deleteCustomer(id) {
-        return this.http.delete('http://localhost:3000/api/customer/' + id)
+        return this.http.delete(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/customer/' + id)
             .map(res => res);
     }
     getCustomerById(id) {
-        return this.http.get('http://localhost:3000/api/customer/' + id)
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/customer/' + id)
             .map(res => res);
     }
     getInvoices() {
-        return this.http.get('http://localhost:3000/api/invoices')
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/invoices')
             .map(res => res);
     }
     getInvoiceById(id) {
-        return this.http.get('http://localhost:3000/api/invoice/' + id)
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/invoice/' + id)
             .map(res => res);
     }
     addInvoice(name, customerId, items, invoiceDate) {
@@ -678,11 +680,11 @@ let CustomerService = class CustomerService {
         headers1.append('Content-Type', 'application/javascript');
         headers1.append('Access-Control-Allow-Origin', '*');
         const filename = name + '-' + invoiceDate;
-        return this.http.post('http://localhost:3000/api/invoice', { name: filename, id: customerId, goods: items, date: invoiceDate }, { headers: headers1 })
+        return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/invoice', { name: filename, id: customerId, goods: items, date: invoiceDate }, { headers: headers1 })
             .map(res => res);
     }
     deleteInvoice(id) {
-        return this.http.delete('http://localhost:3000/api/invoice/' + id)
+        return this.http.delete(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/invoice/' + id)
             .map(res => res);
     }
 };
@@ -982,6 +984,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+
 
 
 
@@ -994,74 +998,74 @@ let InventoryService = class InventoryService {
         const headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers1.append('Content-Type', 'application/javascript');
         headers1.append('Access-Control-Allow-Origin', '*');
-        return this.http.post('http://localhost:3000/api/part', inventory, { headers: headers1 })
+        return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/part', inventory, { headers: headers1 })
             .map(res => res);
     }
     getAllParts() {
-        return this.http.get('http://localhost:3000/api/parts')
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/parts')
             .map(res => res);
     }
     getAllSubmersibles() {
-        return this.http.get('http://localhost:3000/api/submersibles')
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/submersibles')
             .map(res => res);
     }
     getMaxRateChange() {
-        return this.http.get('http://localhost:3000/api/maxRateChange')
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/maxRateChange')
             .map(res => res);
     }
     getSubmersibleById(id) {
-        return this.http.get('http://localhost:3000/api/submersible/' + id)
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/submersible/' + id)
             .map(res => res);
     }
     addSubmersibleQuantity(id, qty) {
         const headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers1.append('Content-Type', 'application/javascript');
         headers1.append('Access-Control-Allow-Origin', '*');
-        return this.http.put('http://localhost:3000/api/updateSubmersible/' + id, { quantity: qty }, { headers: headers1 })
+        return this.http.put(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/updateSubmersible/' + id, { quantity: qty }, { headers: headers1 })
             .map(res => res);
     }
     getPartById(id) {
-        return this.http.get('http://localhost:3000/api/stock/' + id)
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/stock/' + id)
             .map(res => res);
     }
     updateStockQty(id, qty) {
         const headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers1.append('Content-Type', 'application/javascript');
         headers1.append('Access-Control-Allow-Origin', '*');
-        return this.http.put('http://localhost:3000/api/updateStock/' + id, { quantity: qty }, { headers: headers1 })
+        return this.http.put(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/updateStock/' + id, { quantity: qty }, { headers: headers1 })
             .map(res => res);
     }
     updateFinishGoods(id, qty) {
         const headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers1.append('Content-Type', 'application/javascript');
         headers1.append('Access-Control-Allow-Origin', '*');
-        return this.http.put('http://localhost:3000/api/updateFinishGoods/' + id, { quantity: qty }, { headers: headers1 })
+        return this.http.put(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/updateFinishGoods/' + id, { quantity: qty }, { headers: headers1 })
             .map(res => res);
     }
     addPayment(payment) {
         const headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers1.append('Content-Type', 'application/javascript');
         headers1.append('Access-Control-Allow-Origin', '*');
-        return this.http.post('http://localhost:3000/api/payment/', payment, { headers: headers1 })
+        return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/payment/', payment, { headers: headers1 })
             .map(res => res);
     }
     getAllPayments() {
-        return this.http.get('http://localhost:3000/api/payments')
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/payments')
             .map(res => res);
     }
     getPaymentsByCustomerId(customerId) {
-        return this.http.get('http://localhost:3000/api/paymentByCustomer/' + customerId)
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/paymentByCustomer/' + customerId)
             .map(res => res);
     }
     updatePayment(id) {
         const headers1 = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers1.append('Content-Type', 'application/javascript');
         headers1.append('Access-Control-Allow-Origin', '*');
-        return this.http.put('http://localhost:3000/api/updatePayment/' + id, { headers: headers1 })
+        return this.http.put(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/updatePayment/' + id, { headers: headers1 })
             .map(res => res);
     }
     getInvoicesByCustomerId(customerId) {
-        return this.http.get('http://localhost:3000/api/invoiceByCustomer/' + customerId)
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + '/api/invoiceByCustomer/' + customerId)
             .map(res => res);
     }
 };
@@ -1920,10 +1924,10 @@ SidebarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
-/***/ "./src/environments/environments.ts":
-/*!******************************************!*\
-  !*** ./src/environments/environments.ts ***!
-  \******************************************/
+/***/ "./src/environments/environment.ts":
+/*!*****************************************!*\
+  !*** ./src/environments/environment.ts ***!
+  \*****************************************/
 /*! exports provided: environment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1937,6 +1941,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = {
     production: false,
+    apiUrl: 'http://18.188.153.24'
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -1965,14 +1970,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm2015/platform-browser-dynamic.js");
 /* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
-/* harmony import */ var _environments_environments__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./environments/environments */ "./src/environments/environments.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
 
 
 
 
 
 
-if (_environments_environments__WEBPACK_IMPORTED_MODULE_5__["environment"].production) {
+if (_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].production) {
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["enableProdMode"])();
 }
 Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_4__["AppModule"])
