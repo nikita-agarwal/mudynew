@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 var cors = require('cors');
 var path = require('path');
-
+const staticFilePath = path.join(__dirname, "muddy/dist");
 var app = express();
 
 const route = require('./routes/route');
@@ -32,15 +32,15 @@ app.use(cors());
 app.use(bodyparser.json());
 
 //static files
-app.use(express.static('dist/mudy1')); // Current directory is root
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static('dist/mudy1')); // Current directory is root
+app.use(express.static(staticFilePath));
 
 // routes
 app.use('/api', route);
 
 // testing server
 app.get('/', (req, res) => {
-    res.sendFile('index.html',{root:__dirname})
+    res.sendFile('index.html',{root:staticFilePath})
 });
 
 app.listen(port, ()=> {
