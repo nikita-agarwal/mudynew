@@ -32,6 +32,7 @@ app.use(cors());
 app.use(bodyparser.json());
 
 //static files
+app.use(express.static('dist/mudy1')); // Current directory is root
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
