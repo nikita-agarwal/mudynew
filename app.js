@@ -39,7 +39,7 @@ app.use(express.static(staticFilePath));
 app.use('/api', route);
 
 // testing server
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
     res.sendFile('index.html',{root:staticFilePath})
 });
 
