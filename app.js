@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 var cors = require('cors');
 var path = require('path');
-const staticFilePath = path.join(__dirname, "muddy/dist");
+const staticFilePath = path.join(__dirname, "mudy/dist/mudy");
 var app = express();
 
 const route = require('./routes/route');
