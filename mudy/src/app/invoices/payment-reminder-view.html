@@ -20,7 +20,7 @@
             </td>
             <td class="bg-green">
                 <div *ngFor="let pay of data.payments"
-                    [ngClass]="{'highlight': pay.mode === 'cheque'}" (click)="openPaymnetModal(pay)">
+                    [ngClass]="{'highlight': pay.mode === 'cheque'}">
                     {{pay.date | date: 'dd-MMM-yyyy'}} {{pay.ammount}}
                 </div>
             </td>

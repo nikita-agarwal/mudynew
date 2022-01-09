@@ -156,27 +156,27 @@
 
                             <td class="bg-blue">
                                 <span
-                                    *ngIf="item.allowedSubType.indexOf(submersibles[0]._id) !== -1 || item.allowedSubType.indexOf(submersibles[1]._id) !== -1">{{(submersibles[0].quantity
+                                    *ngIf="item.allowedSubType.indexOf(submersibles[0].code) !== -1 || item.allowedSubType.indexOf(submersibles[1].code) !== -1">{{(submersibles[0].quantity
                                     || submersibles[1].quantity )?
                                     (submersibles[0].quantity + submersibles[1].quantity):0}}</span>
                             </td>
                             <td class="bg-pink">
                                 <span
-                                    *ngIf="item.allowedSubType.indexOf(submersibles[2]._id) !== -1">{{submersibles[2].quantity?
+                                    *ngIf="item.allowedSubType.indexOf(submersibles[2].code) !== -1">{{submersibles[2].quantity?
                                     submersibles[2].quantity: 0}}</span>
                             </td>
                             <td class="bg-purple">
                                 <span
-                                    *ngIf="item.allowedSubType.indexOf(submersibles[3]._id) !== -1 || item.allowedSubType.indexOf(submersibles[4]._id) !== -1">{{(submersibles[3].quantity
+                                    *ngIf="item.allowedSubType.indexOf(submersibles[3].code) !== -1 || item.allowedSubType.indexOf(submersibles[4].code) !== -1">{{(submersibles[3].quantity
                                     || submersibles[4].quantity )?
                                     (submersibles[3].quantity + submersibles[4].quantity):0}}</span>
                             </td>
                             <td class="bg-yellow">
-                                <span *ngIf="item.allowedSubType.indexOf(submersibles[5]._id) !== -1">
+                                <span *ngIf="item.allowedSubType.indexOf(submersibles[5].code) !== -1">
                                     {{submersibles[5].quantity? submersibles[5].quantity: 0}}</span>
                             </td>
                             <td class="bg-green"><span
-                                    *ngIf="item.allowedSubType.indexOf(submersibles[6]._id) !== -1">{{submersibles[6].quantity?
+                                    *ngIf="item.allowedSubType.indexOf(submersibles[6].code) !== -1">{{submersibles[6].quantity?
                                     submersibles[6].quantity: 0}}</span></td>
 
                             <td>{{item.quantity}}</td>

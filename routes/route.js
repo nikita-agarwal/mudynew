@@ -156,7 +156,8 @@ router.post('/part', (req, res, next) => {
         material: req.body.material,
         description: req.body.description,
         moc: req.body.moc,
-        quantity: 0
+        quantity: 0,
+        allowedSubType: req.body.allowedSubType
     });
     newPart.save((err, part) => {
         if (err) {
@@ -247,6 +248,7 @@ router.get('/submersible/:id', (req, res, next) => {
     })
 });
 router.put('/updateSubmersible/:id', (req, res, next) => {
+    
     Submersible.findByIdAndUpdate(req.params.id,
         {
             $set: {
@@ -260,7 +262,7 @@ router.put('/updateSubmersible/:id', (req, res, next) => {
             if (err) {
                 res.send({ msg: 'Failed to update submersible' })
             } else {
-                res.send({ msg: 'Updated success' })
+                res.send({ msg: 'Updated success', updateSubmersible })
             }
         });
 });

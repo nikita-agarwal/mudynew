@@ -24,6 +24,10 @@ const PartSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    allowedSubType: {
+        type: Array,
+        required: true
+    }
 
 });
 

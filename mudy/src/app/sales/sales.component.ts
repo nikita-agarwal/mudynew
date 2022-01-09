@@ -50,8 +50,9 @@ export class SalesComponent implements OnInit {
   getMaxRateChanges() {
     this.inventoryService.getMaxRateChange().subscribe(resp => {
       this.numberOfChange = resp[0].number;
-      this.numbers = Array(this.numberOfChange).fill(0).map((x, i) => i);
-      console.log(this.numbers, this.numberOfChange, 'num');
+      // this.numbers = Array(this.numberOfChange).fill(0).map((x, i) => i);
+      this.numbers = [0]
+      console.log(this.numbers.slice().reverse(), this.numberOfChange, 'num');
     }, (err) => {
       this.snackBar.open(err, 'Error');
     });

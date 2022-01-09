@@ -90,6 +90,9 @@ export class CustomersComponent implements OnInit {
         brand: '',
         subRates: []
       };
+      this.submersibles.forEach(ele => {
+        ele.rate = ''
+      })
       this.snackBar.open('Customer Create', 'Success');
     }, (error) => {
       this.snackBar.open(error, 'Error');
