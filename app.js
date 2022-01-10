@@ -33,7 +33,7 @@ app.use(bodyparser.json());
 
 //static files
 // app.use(express.static('dist/mudy1')); // Current directory is root
-app.use(express.static(staticFilePath));
+app.use(express.static(__dirname + staticFilePath));
 
 // routes
 app.use('/api', route);
