@@ -40,7 +40,7 @@ app.use('/api', route);
 
 // testing server
 app.get('/*', (req, res) => {
-    res.sendFile('index.html',{root:staticFilePath})
+    res.sendFile(staticFilePath+"/index.html")
 });
 
 app.listen(port, ()=> {
